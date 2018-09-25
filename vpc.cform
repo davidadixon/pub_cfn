@@ -5,6 +5,45 @@
   "Parameters": {},
   "Mappings": {},
   "Conditions": {},
-  "Resources": {},
+  "Resources": {
+    "vpc": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": {
+          "Fn::Sub": "10.${CidrBlockOctetCore}.0.0/16"
+        },
+        "EnableDnsSupport": "true",
+        "EnableDnsHostnames": "true",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": {
+              "Fn::Join": [
+                "-",
+                [
+                  "vpc",
+                  {
+                    "Ref": "AWS::Region"
+                  },
+                  {
+                    "Fn::FindInMap": [
+                      "Environment",
+                      "Code",
+                      {
+                        "Ref": "Environment"
+                      }
+                    ]
+                  },
+                  {
+                    "Ref": "ApplicationName"
+                  }
+                ]
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
   "Outputs": {}
 }
