@@ -10,7 +10,7 @@
       "Type": "AWS::EC2::VPC",
       "Properties": {
         "CidrBlock": {
-          "Fn::Sub": "10.${CidrBlockOctetCore}.0.0/16"
+          "Fn::Sub": "10.251.0.0/16"
         },
         "EnableDnsSupport": "true",
         "EnableDnsHostnames": "true",
