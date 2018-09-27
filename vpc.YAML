@@ -14,14 +14,5 @@ Resources:
             EnableDnsHostnames: 'true'
             Tags:
             -   Key: Name
-                Value:
-                    Fn::Join:
-                    - '-'
-                    -   - vpc
-                        -   Ref: AWS::Region
-                        -   Fn::FindInMap:
-                            - Environment
-                            - Code
-                            -   Ref: Environment
-                        -   Ref: ApplicationName
+                Value: vpc
 Outputs: {}
