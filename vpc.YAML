@@ -1,0 +1,27 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: ''
+Metadata: {}
+Parameters: {}
+Mappings: {}
+Conditions: {}
+Resources:
+    vpc:
+        Type: AWS::EC2::VPC
+        Properties:
+            CidrBlock:
+                Fn::Sub: 10.251.0.0/16
+            EnableDnsSupport: 'true'
+            EnableDnsHostnames: 'true'
+            Tags:
+            -   Key: Name
+                Value:
+                    Fn::Join:
+                    - '-'
+                    -   - vpc
+                        -   Ref: AWS::Region
+                        -   Fn::FindInMap:
+                            - Environment
+                            - Code
+                            -   Ref: Environment
+                        -   Ref: ApplicationName
+Outputs: {}
